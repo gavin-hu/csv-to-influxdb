@@ -192,7 +192,7 @@ func main() {
 		bpSize = 0
 	}
 
-	// close client for release resources
+	//close client for release resources
 	close := func() {
 		err := c.Close()
 		if err != nil {
@@ -282,7 +282,7 @@ func main() {
 	}
 	//send remainder
 	write()
-	// close client
+	//close client
 	close()
 	//
 	log.Printf("Done (wrote %d points)", totalSize)
