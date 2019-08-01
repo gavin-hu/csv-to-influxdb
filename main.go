@@ -247,7 +247,13 @@ func main() {
 				fields[h] = t
 			} else if conf.TimestampColumn == h && conf.TimestampFormat == "unix" {
 				tt, _ := strconv.Atoi(r)
-				ts = time.Unix(0, int64(tt))
+				// java timestamp
+				if len([]rune(r)) == 13 {
+					ts = time.Unix(0, int64(tt)*int64(time.Millisecond))
+				} else {
+					ts = time.Unix(0, int64(tt))
+				}
+				fmt.Println(ts)
 				continue
 			} else if !conf.ForceFloat && !conf.ForceString && integerRe.MatchString(r) {
 				i, _ := strconv.Atoi(r)
